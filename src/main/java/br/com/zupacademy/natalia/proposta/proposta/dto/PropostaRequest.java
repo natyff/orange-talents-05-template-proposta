@@ -1,14 +1,15 @@
 package br.com.zupacademy.natalia.proposta.proposta.dto;
 
 import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
-import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
+import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+
 
 public class PropostaRequest {
 
@@ -50,5 +51,8 @@ public class PropostaRequest {
 
     public BigDecimal getSalario() {
         return salario;
+    }
+
+    public PropostaRequest() {
     }
 }

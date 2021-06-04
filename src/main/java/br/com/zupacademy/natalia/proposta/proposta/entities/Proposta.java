@@ -18,7 +18,6 @@ public class Proposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotBlank
     @CpfOrCnpj
     private String documento;
@@ -64,5 +63,8 @@ public class Proposta {
 
     public BigDecimal getSalario() {
         return salario;
+    }
+
+    public Proposta() {
     }
 }
