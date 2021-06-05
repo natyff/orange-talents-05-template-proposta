@@ -1,11 +1,9 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
+import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -31,6 +29,8 @@ public class Proposta {
     @NotNull
     @Positive
     private BigDecimal salario;
+    @Enumerated(EnumType.STRING)
+    private StatusProposta status;
 
 
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
@@ -63,6 +63,10 @@ public class Proposta {
 
     public BigDecimal getSalario() {
         return salario;
+    }
+
+    public StatusProposta getStatus() {
+        return status;
     }
 
     public Proposta() {
