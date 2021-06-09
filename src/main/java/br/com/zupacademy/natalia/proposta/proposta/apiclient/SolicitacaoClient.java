@@ -4,8 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-@FeignClient(name = "cartoes", url = "http://localhost:9999")
-public interface CartoesClient {
+@FeignClient(name = "solicitacoes", url = "http://localhost:9999")
+public interface SolicitacaoClient {
 
     @PostMapping("/api/solicitacao")
     PropostaClienteResponse enviarDocumento(PropostaClientRequest request);

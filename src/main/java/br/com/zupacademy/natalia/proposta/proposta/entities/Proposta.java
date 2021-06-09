@@ -1,5 +1,6 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
+import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.CartaoClientResponse;
 import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
@@ -31,6 +32,9 @@ public class Proposta {
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
     private StatusProposta status;
+
+    private String cartao;
+
 
 
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
@@ -69,6 +73,16 @@ public class Proposta {
         return status;
     }
 
+    public String getCartao() {
+        return cartao;
+    }
+    
+
     public Proposta() {
     }
+
+    public void setCartao(String ca) {
+        this.cartao = ca;
+    }
+
 }

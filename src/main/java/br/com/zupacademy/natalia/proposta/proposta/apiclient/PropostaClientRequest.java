@@ -1,5 +1,8 @@
 package br.com.zupacademy.natalia.proposta.proposta.apiclient;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PropostaClientRequest {
 
     private String documento;
@@ -15,6 +18,7 @@ public class PropostaClientRequest {
         this.nome = nome;
         this.idProposta = idProposta;
     }
+
 
     public String getDocumento() {
         return documento;

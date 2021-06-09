@@ -1,6 +1,6 @@
 package br.com.zupacademy.natalia.proposta.proposta.controller;
 
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.CartoesClient;
+import br.com.zupacademy.natalia.proposta.proposta.apiclient.SolicitacaoClient;
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
 import br.com.zupacademy.natalia.proposta.proposta.dto.ConsultaResponse;
 import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cartoes")
+@RequestMapping("/consulta")
 public class ConsultaDadosController {
 
     @Autowired
-    CartoesClient cartoesClient;
+    SolicitacaoClient solicitacaoClient;
 
     @PostMapping
     public ResponseEntity<ConsultaResponse> consulta(@RequestBody PropostaClientRequest request) {
 
         try {
-             cartoesClient.enviarDocumento(request);
+             solicitacaoClient.enviarDocumento(request);
              return  ResponseEntity.ok().body(new ConsultaResponse(StatusProposta.ELEGIVEL));
         }catch (FeignException ex){
             if (ex.status() == 422) {
