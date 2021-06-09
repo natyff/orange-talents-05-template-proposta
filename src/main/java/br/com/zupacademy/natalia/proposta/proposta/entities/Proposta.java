@@ -1,6 +1,5 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.CartaoClientResponse;
 import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
@@ -76,13 +75,16 @@ public class Proposta {
     public String getCartao() {
         return cartao;
     }
-    
 
-    public Proposta() {
+    public void setStatus(StatusProposta status) {
+        this.status = status;
     }
 
-    public void setCartao(String ca) {
-        this.cartao = ca;
+    public void setCartao(String cartao) {
+        this.cartao = cartao;
+    }
+
+    public Proposta() {
     }
 
 }

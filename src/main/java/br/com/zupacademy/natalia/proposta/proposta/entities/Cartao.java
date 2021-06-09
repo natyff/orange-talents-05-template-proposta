@@ -11,8 +11,10 @@ public class Cartao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
     private String numeroCartao;
+
     @NotNull
     private LocalDateTime dataEmissao;
     @NotBlank

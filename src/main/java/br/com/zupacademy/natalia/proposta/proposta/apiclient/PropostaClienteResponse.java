@@ -1,5 +1,7 @@
 package br.com.zupacademy.natalia.proposta.proposta.apiclient;
 
+import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
+
 public class PropostaClienteResponse {
 
     private String documento;
@@ -16,6 +18,13 @@ public class PropostaClienteResponse {
     }
 
     public PropostaClienteResponse() {
+    }
+
+    public PropostaClienteResponse(Proposta proposta) {
+        this.idProposta = proposta.getId().toString();
+        this.nome = proposta.getNome();
+        this.documento = proposta.getDocumento();
+
     }
 
     public String getDocumento() {
