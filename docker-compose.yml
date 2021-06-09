@@ -1,5 +1,36 @@
 version: '3'
 services:
+    mysql:
+      image: mysql:5.7
+      networks:
+        - production-network
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: proposta
+
+    proposta:
+      build:
+        dockerfile: ./Dockerfile
+        context: .
+      environment:
+        DB_URL: jdbc:mysql://mysql/proposta
+        DB_USER: root
+        DB_PASSWORD: root
+
+      restart: always
+      ports:
+        - "8080:8080"
+      networks:
+        - production-network
+      depends_on:
+        - mysql
+
+  networks:
+    production-network:
+      driver: bridge
+
 
   zookeeper:
     image: "confluentinc/cp-zookeeper:5.2.1"
