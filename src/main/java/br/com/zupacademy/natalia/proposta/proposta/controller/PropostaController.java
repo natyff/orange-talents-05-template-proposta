@@ -13,6 +13,7 @@ import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 import br.com.zupacademy.natalia.proposta.proposta.schedule.ConsultaCartao;
 import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,16 +51,27 @@ public class PropostaController {
         propostaRepository.save(proposta);
 
         PropostaClientRequest propostaClientRequest = new PropostaClientRequest(
-                propostaRequest.getNome(),
                 propostaRequest.getDocumento(),
+                propostaRequest.getNome(),
                 proposta.getId().toString()
         );
+        try {
+            solicitacaoClient.enviarDocumento(propostaClientRequest);
+            PropostaClienteResponse propostaClienteResponse = solicitacaoClient.enviarDocumento(propostaClientRequest);
+            if(propostaClienteResponse.getResultadoSolicitacao().equals("SEM_RESTRICAO")){
+            proposta.setStatus(StatusProposta.ELEGIVEL);
+        }
+
+        }catch (FeignException ex){
+            if (ex.status() == 422) {
+                return ResponseEntity.badRequest().build();
+            }else
+                throw ex;
+        }
 
 
+        propostaRepository.save(proposta);
 
-
-
-        solicitacaoClient.enviarDocumento(propostaClientRequest);
         URI urlNovaProposta = builder.path("/proposta/{id}").build(proposta.getId());
         return ResponseEntity.created(urlNovaProposta).build();
     }
