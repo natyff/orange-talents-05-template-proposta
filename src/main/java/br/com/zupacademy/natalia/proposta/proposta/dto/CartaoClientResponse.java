@@ -1,8 +1,9 @@
-package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes;
+package br.com.zupacademy.natalia.proposta.proposta.dto;
 
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
-import br.com.zupacademy.natalia.proposta.proposta.entities.Cartao;
+import br.com.zupacademy.natalia.proposta.proposta.entities.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class CartaoClientResponse {
     private List<Avisos> avisos;
     private List<Carteiras> carteiras;
     private List<Parcelas> parcelas;
-    private Integer limite;
+    private BigDecimal limite;
     private Renegociacao renegociacao;
     private Vencimento vencimento;
     private PropostaClientRequest propostaId;
 
     public CartaoClientResponse(String id, LocalDateTime emitidoEm, String titular,
                                 List<Bloqueios> bloqueios, List<Avisos> avisos, List<Carteiras> carteiras,
-                                List<Parcelas> parcelas, Integer limite, Renegociacao renegociacao,
+                                List<Parcelas> parcelas, BigDecimal limite, Renegociacao renegociacao,
                                 Vencimento vencimento, PropostaClientRequest propostaId) {
         this.id = id;
         this.emitidoEm = emitidoEm;
@@ -65,7 +66,7 @@ public class CartaoClientResponse {
         return parcelas;
     }
 
-    public Integer getLimite() {
+    public BigDecimal getLimite() {
         return limite;
     }
 
@@ -81,5 +82,23 @@ public class CartaoClientResponse {
         return propostaId;
     }
 
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public Cartao converter(CartaoClientResponse cartaoClientResponse){
+        return new Cartao(
+                this.id,
+        this.emitidoEm,
+        this.titular,
+        this.bloqueios,
+        this.avisos,
+        this.carteiras,
+        this.parcelas,
+        this.limite,
+        this.renegociacao,
+        this.vencimento,
+        this.propostaId);
+    }
 
 }

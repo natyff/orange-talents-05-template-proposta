@@ -24,7 +24,7 @@ public class PropostaClienteResponse {
         this.idProposta = proposta.getId().toString();
         this.nome = proposta.getNome();
         this.documento = proposta.getDocumento();
-
+        this.resultadoSolicitacao = proposta.getStatus().name();
     }
 
     public String getDocumento() {

@@ -1,7 +1,12 @@
-package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes;
+package br.com.zupacademy.natalia.proposta.proposta.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Parcelas {
 
+    @Id
     private String id;
     private Integer quantidade;
     private Integer valor;

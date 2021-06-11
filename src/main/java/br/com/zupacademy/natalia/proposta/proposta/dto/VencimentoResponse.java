@@ -1,14 +1,16 @@
-package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes;
+package br.com.zupacademy.natalia.proposta.proposta.dto;
 
 import java.time.LocalDateTime;
 
-public class Vencimento {
+
+public class VencimentoResponse {
+
 
     private String id;
     private Integer dia;
     private LocalDateTime dataDeCriacao;
 
-    public Vencimento(String id, Integer dia, LocalDateTime dataDeCriacao) {
+    public VencimentoResponse(String id, Integer dia, LocalDateTime dataDeCriacao) {
         this.id = id;
         this.dia = dia;
         this.dataDeCriacao = dataDeCriacao;
@@ -24,5 +26,8 @@ public class Vencimento {
 
     public LocalDateTime getDataDeCriacao() {
         return dataDeCriacao;
+    }
+
+    public VencimentoResponse() {
     }
 }

@@ -32,8 +32,7 @@ public class Proposta {
     @Enumerated(EnumType.STRING)
     private StatusProposta status;
 
-    private String cartao;
-
+    private String  cartao;
 
 
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
@@ -79,6 +78,7 @@ public class Proposta {
     public void setStatus(StatusProposta status) {
         this.status = status;
     }
+
 
     public void setCartao(String cartao) {
         this.cartao = cartao;
