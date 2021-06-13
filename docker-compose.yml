@@ -1,35 +1,35 @@
 version: '3'
 services:
-    mysql:
-      image: mysql:8.0.25
-      networks:
-        - production-network
-      ports:
-        - "3306:3306"
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: proposta
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: proposta
+    ports:
+      - 3308:3306
+    volumes:
+      - proposta_volume:/var/lib/mysql
 
-    proposta:
-      build:
-        dockerfile: ./Dockerfile
-        context: .
-      environment:
-        DB_URL: jdbc:mysql://mysql/proposta
-        DB_USER: root
-        DB_PASSWORD: root
 
-      restart: always
-      ports:
-        - "8080:8080"
-      networks:
-        - production-network
-      depends_on:
-        - mysql
-
-  networks:
-    production-network:
-      driver: bridge
+  proposta:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: proposta
+    ports:
+      - 8081:8081
+    restart: always
+    depends_on:
+      - mysql
+#      - analise
+#      - contas
+    environment:
+      ANALISE_URL: "http://analise:9999"
+      CARTAO_URL: "http://contas:8888"
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/proposta?serverTimezone=UTC&useLegacyDatetimeCode=false
+      DB_USER: root
+      DB_PASSWORD: root
 
 
   zookeeper:
@@ -52,6 +52,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
 
   postgres:
     image: 'postgres:alpine'
@@ -169,3 +170,4 @@ volumes:
   grafana-volume:
   prometheus-volume:
   postgres-volume:
+  proposta_volume:
