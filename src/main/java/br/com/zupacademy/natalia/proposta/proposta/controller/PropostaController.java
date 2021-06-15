@@ -7,7 +7,7 @@ import br.com.zupacademy.natalia.proposta.proposta.repositories.CartaoRepository
 import br.com.zupacademy.natalia.proposta.proposta.repositories.PropostaRepository;
 import br.com.zupacademy.natalia.proposta.proposta.dto.PropostaRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
-import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,5 +80,4 @@ public class PropostaController {
         }
         return ResponseEntity.notFound().build();
     }
-
 }

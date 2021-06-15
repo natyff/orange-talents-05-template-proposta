@@ -1,10 +1,7 @@
 package br.com.zupacademy.natalia.proposta.proposta.dto;
 
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClienteResponse;
-import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 
-import br.com.zupacademy.natalia.proposta.proposta.repositories.PropostaRepository;
+import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
 import javax.validation.constraints.Email;

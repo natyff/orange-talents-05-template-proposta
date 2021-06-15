@@ -2,6 +2,7 @@ package br.com.zupacademy.natalia.proposta.proposta.entities;
 
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
 import br.com.zupacademy.natalia.proposta.proposta.biometria.Biometria;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusCartao;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +37,9 @@ public class Cartao{
     private Proposta proposta;
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
     private List<Biometria> biometrias;
+    @Enumerated(EnumType.STRING)
+    private StatusCartao status;
+
 
     public Cartao() {
     }
@@ -137,16 +141,12 @@ public class Cartao{
         this.biometrias = biometrias;
     }
 
+    public StatusCartao getStatus() {
+        return status;
+    }
 
-
-//    public boolean validaBio(UploadImagemBiometria upload){
-//        for(Biometria biometria: this.biometrias){
-//            if(!upload.validarImagem(biometria.getBiometriaImg())){
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
+    public void setStatus(StatusCartao status) {
+        this.status = status;
+    }
 }
 

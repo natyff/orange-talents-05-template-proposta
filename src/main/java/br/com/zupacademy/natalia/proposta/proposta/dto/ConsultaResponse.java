@@ -1,7 +1,7 @@
 package br.com.zupacademy.natalia.proposta.proposta.dto;
 
 
-import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 
 public class ConsultaResponse {
 

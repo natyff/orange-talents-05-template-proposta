@@ -1,6 +1,6 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
-import br.com.zupacademy.natalia.proposta.proposta.uteis.StatusProposta;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
 import javax.persistence.*;
