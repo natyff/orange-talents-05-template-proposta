@@ -22,7 +22,7 @@ public class Cartao{
     private String titular;
     @OneToMany
     private List<Bloqueios> bloqueios;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Avisos> avisos;
     @OneToMany
     private List<Carteiras> carteiras;

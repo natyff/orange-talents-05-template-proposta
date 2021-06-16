@@ -1,6 +1,6 @@
-package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes;
+package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.interfaces;
 
-import br.com.zupacademy.natalia.proposta.proposta.dto.BloqueioRequest;
+import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.BloqueioClientRequest;
 import br.com.zupacademy.natalia.proposta.proposta.dto.BloqueiosResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

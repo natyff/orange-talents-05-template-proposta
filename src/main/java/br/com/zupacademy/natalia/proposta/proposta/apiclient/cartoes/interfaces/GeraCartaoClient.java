@@ -1,4 +1,4 @@
-package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes;
+package br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.interfaces;
 
 
 import br.com.zupacademy.natalia.proposta.proposta.dto.CartaoClientResponse;

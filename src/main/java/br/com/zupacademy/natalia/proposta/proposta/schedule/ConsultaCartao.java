@@ -8,7 +8,7 @@ import br.com.zupacademy.natalia.proposta.proposta.repositories.PropostaReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.GeraCartaoClient;
+import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.interfaces.GeraCartaoClient;
 
 @Component
 public class ConsultaCartao {
