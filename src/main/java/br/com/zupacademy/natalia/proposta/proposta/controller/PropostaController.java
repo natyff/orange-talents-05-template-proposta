@@ -3,12 +3,14 @@ package br.com.zupacademy.natalia.proposta.proposta.controller;
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClienteResponse;
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.SolicitacaoClient;
-import br.com.zupacademy.natalia.proposta.proposta.repositories.CartaoRepository;
 import br.com.zupacademy.natalia.proposta.proposta.repositories.PropostaRepository;
 import br.com.zupacademy.natalia.proposta.proposta.dto.PropostaRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 import feign.FeignException;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 @RestController
@@ -28,9 +32,9 @@ public class PropostaController {
     @Autowired
     SolicitacaoClient solicitacaoClient;
 
-
     @Autowired
-    CartaoRepository cartaoRepository;
+    MeterRegistry meterRegistry;
+
 
 
     @PostMapping("/proposta")
@@ -66,7 +70,6 @@ public class PropostaController {
         }
 
         propostaRepository.save(proposta);
-
 
         URI urlNovaProposta = builder.path("/proposta/{id}").build(proposta.getId());
         return ResponseEntity.created(urlNovaProposta).build();
