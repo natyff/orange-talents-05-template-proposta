@@ -20,6 +20,7 @@ public class Carteiras {
 
 
 
+
     public Carteiras(Long id, String email, LocalDateTime associadaEm, String emissor) {
         this.id = id;
         this.email = email;

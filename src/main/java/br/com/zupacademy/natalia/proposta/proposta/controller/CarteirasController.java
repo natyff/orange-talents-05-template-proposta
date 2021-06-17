@@ -4,6 +4,7 @@ import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.interfaces.
 import br.com.zupacademy.natalia.proposta.proposta.dto.CarteirasRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Cartao;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Carteiras;
+import br.com.zupacademy.natalia.proposta.proposta.enums.CarteirasEmissor;
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusCarteira;
 import br.com.zupacademy.natalia.proposta.proposta.repositories.CartaoRepository;
 import br.com.zupacademy.natalia.proposta.proposta.repositories.CarteirasRepository;
@@ -41,8 +42,15 @@ public class CarteirasController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cartão não encontrado");
         }
 
-        if(!cartao.get().getCarteiras().isEmpty()){
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Essa carteira já existe");
+        for (Carteiras carteira: cartao.get().getCarteiras()) {
+            if(carteira.getEmissor().equals(carteirasRequest.getEmissor())){
+                return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Essa carteira já existe");
+            }
+        }
+
+        if(!carteirasRequest.getEmissor().equals(CarteirasEmissor.PAYPAL.toString()));
+        if(!carteirasRequest.getEmissor().equals(CarteirasEmissor.SAMSUNG_PAY.toString())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O emissor informado n");
         }
 
         cartao.get().setStatusCarteira(StatusCarteira.ASSOCIADA);
