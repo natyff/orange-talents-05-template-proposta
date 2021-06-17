@@ -1,26 +1,49 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import br.com.zupacademy.natalia.proposta.proposta.dto.CarteirasRequest;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
 public class Carteiras {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank
     private String email;
-    private LocalDateTime associadaEm;
+    private LocalDateTime associadaEm = LocalDateTime.now();
     private String emissor;
+    private String cartaoId;
 
-    public Carteiras(String id, String email, LocalDateTime associadaEm, String emissor) {
+
+
+    public Carteiras(Long id, String email, LocalDateTime associadaEm, String emissor) {
         this.id = id;
         this.email = email;
         this.associadaEm = associadaEm;
         this.emissor = emissor;
+
     }
 
-    public String getId() {
+    public Carteiras(String email, String emissor, String cartaoId) {
+        this.email = email;
+        this.emissor = emissor;
+        this.cartaoId = cartaoId;
+    }
+
+    public Carteiras(CarteirasRequest carteirasRequest) {
+        this.email = carteirasRequest.getEmail();
+        this.emissor = carteirasRequest.getEmissor();
+        this.cartaoId = carteirasRequest.getCartaoId();
+    }
+
+    public Carteiras() {
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -35,4 +58,5 @@ public class Carteiras {
     public String getEmissor() {
         return emissor;
     }
+
 }

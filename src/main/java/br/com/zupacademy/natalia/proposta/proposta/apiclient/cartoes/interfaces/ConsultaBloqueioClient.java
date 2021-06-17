@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(name = "bloqueio-cartao", url = "http://localhost:8888")
-public interface ConsultaBloqueio {
+public interface ConsultaBloqueioClient {
 
     @PostMapping("/api/cartoes/{id}/bloqueios")
     BloqueiosResponse bloqueiaCartao(@PathVariable String id, BloqueioClientRequest bloqueioClientRequest);

@@ -3,6 +3,7 @@ package br.com.zupacademy.natalia.proposta.proposta.entities;
 import br.com.zupacademy.natalia.proposta.proposta.apiclient.PropostaClientRequest;
 import br.com.zupacademy.natalia.proposta.proposta.biometria.Biometria;
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusCartao;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusCarteira;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,7 +25,7 @@ public class Cartao{
     private List<Bloqueios> bloqueios;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Avisos> avisos;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Carteiras> carteiras;
     @OneToMany
     private List<Parcelas> parcelas;
@@ -39,6 +40,8 @@ public class Cartao{
     private List<Biometria> biometrias;
     @Enumerated(EnumType.STRING)
     private StatusCartao status;
+    @Enumerated(EnumType.STRING)
+    private StatusCarteira statusCarteira;
 
 
     public Cartao() {
@@ -147,6 +150,14 @@ public class Cartao{
 
     public void setStatus(StatusCartao status) {
         this.status = status;
+    }
+
+    public StatusCarteira getStatusCarteira() {
+        return statusCarteira;
+    }
+
+    public void setStatusCarteira(StatusCarteira statusCarteira) {
+        this.statusCarteira = statusCarteira;
     }
 }
 

@@ -8,9 +8,6 @@ import br.com.zupacademy.natalia.proposta.proposta.dto.PropostaRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 import feign.FeignException;
-import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @RestController
@@ -31,9 +26,6 @@ public class PropostaController {
 
     @Autowired
     SolicitacaoClient solicitacaoClient;
-
-    @Autowired
-    MeterRegistry meterRegistry;
 
 
 

@@ -34,11 +34,6 @@ public class AvisoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cartão não encontrado");
         }
 
-        if (cartao.isPresent()
-                && cartao.get().getAvisos() != null
-                && !cartao.get().getAvisos().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Verifique se todos os campos estão preenchidos corretamente");
-        }
 
         String ip = httpServletRequest.getRemoteAddr();
         String userAgent = httpServletRequest.getHeader("User-Agent");

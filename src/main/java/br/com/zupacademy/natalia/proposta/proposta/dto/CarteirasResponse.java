@@ -1,6 +1,6 @@
 package br.com.zupacademy.natalia.proposta.proposta.dto;
 
-import br.com.zupacademy.natalia.proposta.proposta.entities.Carteiras;
+import br.com.zupacademy.natalia.proposta.proposta.enums.StatusCarteira;
 
 import java.time.LocalDateTime;
 
@@ -10,15 +10,13 @@ public class CarteirasResponse {
     private String email;
     private LocalDateTime associadaEm;
     private String emissor;
+    private StatusCarteira statusCarteira;
 
     public CarteirasResponse(String id, String email, LocalDateTime associadaEm, String emissor) {
         this.id = id;
         this.email = email;
         this.associadaEm = associadaEm;
         this.emissor = emissor;
-    }
-    public Carteiras converter(){
-        return new Carteiras(this.id, this.email, this.associadaEm, this.emissor);
     }
 
     public String getId() {
@@ -37,5 +35,7 @@ public class CarteirasResponse {
         return emissor;
     }
 
-
+    public StatusCarteira getStatusCarteira() {
+        return statusCarteira;
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @FeignClient(name = "aviso-viagem", url = "http://localhost:8888")
-public interface AvisoViagem {
+public interface AvisoViagemClient {
 
         @PostMapping("/api/cartoes/{id}/avisos")
         AvisosResponse avisoViagem(@PathVariable String id, AvisoViagemClientRequest avisoViagemClientRequest);

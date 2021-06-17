@@ -1,6 +1,5 @@
 package br.com.zupacademy.natalia.proposta.proposta.controller;
 
-import br.com.zupacademy.natalia.proposta.proposta.apiclient.cartoes.interfaces.ConsultaBloqueio;
 import br.com.zupacademy.natalia.proposta.proposta.dto.BloqueioRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Bloqueios;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Cartao;
@@ -26,8 +25,6 @@ public class BloqueioController {
     @Autowired
     BloqueiosRepository bloqueiosRepository;
 
-    @Autowired
-    ConsultaBloqueio consultaBloqueio;
 
     @PostMapping("/cartoes/{id}/bloqueios")
     public ResponseEntity<String> bloquearCartao(@PathVariable String id, HttpServletRequest request,
