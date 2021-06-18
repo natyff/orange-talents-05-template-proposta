@@ -1,6 +1,7 @@
 package br.com.zupacademy.natalia.proposta.proposta.entities;
 
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
+import br.com.zupacademy.natalia.proposta.proposta.security.PropostaCriptografada;
 import br.com.zupacademy.natalia.proposta.proposta.validacao.CpfOrCnpj;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class Proposta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    @CpfOrCnpj
+//    @CpfOrCnpj
     private String documento;
     @NotBlank
     @Email
@@ -79,7 +80,6 @@ public class Proposta {
         this.status = status;
     }
 
-
     public void setCartao(String cartao) {
         this.cartao = cartao;
     }
@@ -87,4 +87,8 @@ public class Proposta {
     public Proposta() {
     }
 
+    @PrePersist
+    private void prePersist() {
+        this.documento = PropostaCriptografada.encrypt(this.documento);
+    }
 }
