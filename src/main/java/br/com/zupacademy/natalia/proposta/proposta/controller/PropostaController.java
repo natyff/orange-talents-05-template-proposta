@@ -8,6 +8,8 @@ import br.com.zupacademy.natalia.proposta.proposta.dto.PropostaRequest;
 import br.com.zupacademy.natalia.proposta.proposta.entities.Proposta;
 import br.com.zupacademy.natalia.proposta.proposta.enums.StatusProposta;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,24 @@ public class PropostaController {
     @Autowired
     SolicitacaoClient solicitacaoClient;
 
+    private final Tracer tracer;
+
+    public PropostaController(Tracer tracer) {
+        this.tracer = tracer;
+    }
+
 
 
     @PostMapping("/proposta")
     public ResponseEntity<String> novaProposta(@RequestBody @Valid PropostaRequest propostaRequest,
                                                UriComponentsBuilder builder){
+
+//        Tags OpenTrancing
+        Span activeSpan = tracer.activeSpan();
+        activeSpan.setTag("user.aplicacao", "propostas");
+        activeSpan.setBaggageItem("user.aplicacao", "propostas");
+        activeSpan.log("Teste");
+
         //caso o cliente já tenha uma proposta em andamento retornar 422
         Optional<Proposta> jaPossuiProposta = propostaRepository.findByDocumento(propostaRequest.getDocumento());
         if(jaPossuiProposta.isPresent()){
